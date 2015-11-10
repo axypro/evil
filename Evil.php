@@ -51,8 +51,18 @@ class Evil
         } else {
             $message = '<pre>'.htmlspecialchars($message, ENT_COMPAT, 'UTF-8').'</pre>';
         }
-        echo $message;
+        self::out($message);
         self::stop($status);
+    }
+
+    /**
+     * Outputs a message to the stdout
+     *
+     * @param string $message
+     */
+    public static function out($message)
+    {
+        echo $message;
     }
 
     /**

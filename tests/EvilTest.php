@@ -91,4 +91,16 @@ class EvilTest extends \PHPUnit_Framework_TestCase
             ],
         ];
     }
+
+    /**
+     * covers ::out
+     */
+    public function testOut()
+    {
+        $expected = "This is\n output";
+        ob_start();
+        Evil::out($expected);
+        $actual = ob_get_clean();
+        $this->assertSame($actual, $expected);
+    }
 }
