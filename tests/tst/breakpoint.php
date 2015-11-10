@@ -13,8 +13,11 @@ switch (count($_SERVER['argv'])) {
     case 2:
         Evil::breakpoint('With line', true);
         break;
-    default:
+    case 3:
         Evil::breakpoint('With line + file', true, true, 5);
+        break;
+    default:
+        Evil::breakpoint([1, 2, 3], true);
 }
 
 echo 'stop'.PHP_EOL;

@@ -92,6 +92,20 @@ class EvilTest extends \PHPUnit_Framework_TestCase
         ];
     }
 
+    public function testBreakpointStruct()
+    {
+        if (!defined('PHP_BINARY')) {
+            $this->markTestSkipped('PHP_BINARY not found');
+        }
+        $bin = PHP_BINARY;
+        $script = realpath(__DIR__.'/tst/breakpoint.php');
+        $cmd = $bin.' -f '.$script.' 1 2 3';
+        exec($cmd, $output);
+        $output = preg_replace('/\s+/', '', implode('', $output));
+        $expected = 'start20:Array([0]=>1[1]=>2[2]=>3)';
+        $this->assertSame($expected, $output);
+    }
+
     /**
      * covers ::out
      */

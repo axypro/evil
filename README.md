@@ -25,10 +25,12 @@ Evil::stop(5); // exit with code 5
 #### breakpoint
 
 ```php
-breakpoint(string $message [, bool $line [, bool $file [, int $status]);
+breakpoint(mixed $message [, bool $line [, bool $file [, int $status]);
 ```
 
 Shows debugging information and terminates the current script (with the status from `$status`).
+
+If `$message` is not a scalar then used `print_r()`.
 
 If specified `$line`: shows the line number of the breakpoint.
 For `$file` shows the file name.

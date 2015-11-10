@@ -38,13 +38,16 @@ class Evil
     /**
      * Outputs debug breakpoint and terminates the current script
      *
-     * @param string $message
+     * @param mixed $message
      * @param bool $line [optional]
      * @param bool $file [optional]
      * @param int $status [optional]
      */
     public static function breakpoint($message, $line = false, $file = false, $status = null)
     {
+        if (!is_scalar($message)) {
+            $message = print_r($message, 1);
+        }
         $message = self::appendFL($message, $line, $file);
         if (php_sapi_name() === 'cli') {
             $message .= PHP_EOL;
