@@ -38,4 +38,57 @@ class EvilTest extends \PHPUnit_Framework_TestCase
         $this->assertSame(10, $status);
         $this->assertSame(['1'], $output);
     }
+
+    /**
+     * covers ::stop
+     * @dataProvider providerBreakpoint
+     * @param string $args
+     * @param int $code
+     * @param string[] $lines
+     */
+    public function testBreakpoint($args, $code, $lines)
+    {
+        if (!defined('PHP_BINARY')) {
+            $this->markTestSkipped('PHP_BINARY not found');
+        }
+        $bin = PHP_BINARY;
+        $script = realpath(__DIR__.'/tst/breakpoint.php');
+        $cmd = $bin.' -f '.$script.' '.$args;
+        exec($cmd, $output, $status);
+        $this->assertSame($code, $status);
+        $this->assertSame($lines, $output);
+    }
+
+    /**
+     * @return array
+     */
+    public function providerBreakpoint()
+    {
+        return [
+            [
+                '',
+                0,
+                [
+                    'start',
+                    'Without line',
+                ],
+            ],
+            [
+                'line',
+                0,
+                [
+                    'start',
+                    '14: With line',
+                ],
+            ],
+            [
+                'line file',
+                5,
+                [
+                    'start',
+                    realpath(__DIR__.'/tst/breakpoint.php').':17: With line + file',
+                ],
+            ],
+        ];
+    }
 }
