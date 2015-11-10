@@ -23,4 +23,15 @@ class Evil
     {
         return eval($code);
     }
+
+    /**
+     * Terminate the current script
+     *
+     * @param int $status [optional]
+     * @SuppressWarnings(PHPMD.ExitExpression)
+     */
+    public static function stop($status = null)
+    {
+        exit($status);
+    }
 }

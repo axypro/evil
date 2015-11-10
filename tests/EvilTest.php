@@ -22,4 +22,20 @@ class EvilTest extends \PHPUnit_Framework_TestCase
         $this->setExpectedException('LogicException', 'message');
         Evil::execCode('throw new LogicException("message");');
     }
+
+    /**
+     * covers ::stop
+     */
+    public function testStop()
+    {
+        if (!defined('PHP_BINARY')) {
+            $this->markTestSkipped('PHP_BINARY not found');
+        }
+        $bin = PHP_BINARY;
+        $script = realpath(__DIR__.'/tst/stop.php');
+        $cmd = $bin.' -f '.$script;
+        exec($cmd, $output, $status);
+        $this->assertSame(10, $status);
+        $this->assertSame(['1'], $output);
+    }
 }
