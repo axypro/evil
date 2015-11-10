@@ -1,0 +1,26 @@
+{
+    "name": "axy/evil",
+    "type": "library",
+    "description": "Necessary evil",
+    "keywords": [
+    ],
+    "homepage": "https://github.com/axypro/evil",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Oleg Grigoriev",
+            "email": "go.vasac@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0"        
+    },
+    "autoload": {
+        "psr-4": {
+            "axy\\evil\\": ""
+        }
+    },
+    "archive": {
+        "exclude": ["/tests/*", "/doc/*", "/cs.sh", "/phpmd.sh", "/*.xml.dist", "/CHANGELOG.md"]
+    }
+}
