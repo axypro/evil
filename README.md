@@ -7,22 +7,46 @@ PHP 5.4+
 
 The library does not require any dependencies.
 
+## Purposes
+
+Some language features are not recommended for frequent use.
+`eval()`, `exit`, global variables, direct access to super-global arrays.
+
+But sometimes it is necessary.
+If you use static code analyzer, it will swear.
+We'll have to suppress messages.
+
+```php
+/** @SuppressWarnings(PHPMD.Superglobals) */
+$x = $_POST['x'];
+```
+
+This library encapsulates the "evil" features.
+You simply call methods and disclaims any sin.
+
+## API
+
+Classes are in the namespace `axy\evil`.
+
 ### Evil
 
-#### eval()
+It contains calls of "evil" functions.
+So how `exit`, `echo` and etc is keywords methods have other names.
+
+#### eval - execCode
 
 ```php
 Evil::execCode('2 + 2'); // 4
 ```
 
-#### exit()
+#### exit - stop
 
 ```php
 Evil::stop(); // exit
 Evil::stop(5); // exit with code 5
 ```
 
-#### breakpoint
+#### breakpoint()
 
 ```php
 breakpoint(mixed $message [, bool $line [, bool $file [, int $status]);
@@ -43,6 +67,14 @@ Evil::breakpoint('point', true, true); // /path/to/script.php:15: point
 
 In CLI mode the `$message` completes new line.
 In HTTP mode the `$message` enclosed in `<pre>`.
+
+#### echo - out
+
+```php
+Evil::out($message);
+```
+
+Sends a string to the stdout stream.
 
 ### Superglobals
 
