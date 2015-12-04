@@ -1,5 +1,9 @@
 # axy\evil
 
+[![Latest Stable Version](https://img.shields.io/packagist/v/axy/evil.svg?style=flat-square)](https://packagist.org/packages/axy/evil)
+[![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%205.4-8892BF.svg?style=flat-square)](https://php.net/)
+[![Build Status](https://img.shields.io/travis/axypro/evil/master.svg?style=flat-square)](https://travis-ci.org/axypro/evil)
+
 * GitHub: [axypro/evil](https://github.com/axypro/evil)
 * Composer: [axy/evil](https://packagist.org/packages/axy/evil)
 
