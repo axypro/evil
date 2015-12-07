@@ -3,15 +3,15 @@
 [![Latest Stable Version](https://img.shields.io/packagist/v/axy/evil.svg?style=flat-square)](https://packagist.org/packages/axy/evil)
 [![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%205.4-8892BF.svg?style=flat-square)](https://php.net/)
 [![Build Status](https://img.shields.io/travis/axypro/evil/master.svg?style=flat-square)](https://travis-ci.org/axypro/evil)
+[![Coverage Status](https://coveralls.io/repos/axypro/evil/badge.svg?branch=master&service=github)](https://coveralls.io/github/axypro/evil?branch=master)
+[![License](https://poser.pugx.org/axy/evil/license)](LICENSE)
 
-* GitHub: [axypro/evil](https://github.com/axypro/evil)
-* Composer: [axy/evil](https://packagist.org/packages/axy/evil)
+* The library does not require any dependencies.
+* Tested on PHP 5.4+, PHP 7, HHVM (on Linux).
+* Install: `composer require axy/evil`.
+* License: [MIT](LICENSE).
 
-PHP 5.4+
-
-The library does not require any dependencies.
-
-## Purposes
+### Documentation
 
 Some language features are not recommended for frequent use.
 `eval()`, `exit`, global variables, direct access to super-global arrays.
@@ -28,29 +28,29 @@ $x = $_POST['x'];
 This library encapsulates the "evil" features.
 You simply call methods and disclaims any sin.
 
-## API
+### API
 
 Classes are in the namespace `axy\evil`.
 
-### Evil
+#### Evil
 
 It contains calls of "evil" functions.
 So how `exit`, `echo` and etc is keywords methods have other names.
 
-#### eval - execCode
+##### eval - execCode
 
 ```php
 Evil::execCode('2 + 2'); // 4
 ```
 
-#### exit - stop
+##### exit - stop
 
 ```php
 Evil::stop(); // exit
 Evil::stop(5); // exit with code 5
 ```
 
-#### breakpoint()
+##### breakpoint()
 
 ```php
 breakpoint(mixed $message [, bool $line [, bool $file [, int $status]);
@@ -72,7 +72,7 @@ Evil::breakpoint('point', true, true); // /path/to/script.php:15: point
 In CLI mode the `$message` completes new line.
 In HTTP mode the `$message` enclosed in `<pre>`.
 
-#### echo - out
+##### echo - out
 
 ```php
 Evil::out($message);
@@ -80,7 +80,7 @@ Evil::out($message);
 
 Sends a string to the stdout stream.
 
-### Superglobals
+#### Superglobals
 
 Static methods of `axy\evil\Superglobals`:
 
@@ -97,14 +97,14 @@ Return the corresponding superglobals arrays.
 The data is returned by reference.
 
 ```php
-$session = Supeglobals::getSESSION();
+$session = Superglobals::getSESSION();
 $session['var'] = 'value'; // no effect
 
 $session = &Supeglobals::getSESSION();
 $session['var'] = 'value'; // success
 ```
 
-### Globals
+#### Globals
 
 Static methods:
 
